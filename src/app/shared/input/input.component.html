@@ -1,0 +1,41 @@
+<div class="form-group">
+  <label [htmlFor]="id">{{ label }}</label>
+  <input
+    [type]="type"
+    class="form-control"
+    [id]="id"
+    [placeholder]="placeholder"
+    [formControl]="control"
+  />
+  <ng-container *ngIf="control.touched && control.dirty">
+    <div class="text-danger" *ngIf="control.errors?.required">
+      {{ label }} je obavezno polje
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.minlength">
+      {{ label }} mora imati najmanje
+      {{ control.errors?.minlength.requiredLength }} karaktera
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.maxlength">
+      {{ label }} moze imati najvise
+      {{ control.errors?.maxlength.requiredLength }} karaktera
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.pattern">
+      {{ label }} nije u ispravnom formatu
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.email">
+      {{ label }} nije u ispravnom formatu
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.noMatch">
+      Lozinke se ne poklapaju
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.emailTaken">
+      Email je zauzet
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.usernameTaken">
+      Username je zauzet
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.JMBGTaken">
+      JMBG je zauzet
+    </div>
+  </ng-container>
+</div>

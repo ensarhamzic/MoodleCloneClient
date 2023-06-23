@@ -1,0 +1,17 @@
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
+})
+export class InputComponent {
+  @Input() id: string = '';
+  @Input() label: string = 'Input field';
+  @Input() type: string = 'text';
+  @Input() control: FormControl = new FormControl('');
+  @Input() placeholder: string = 'Input field';
+
+  constructor() {}
+}

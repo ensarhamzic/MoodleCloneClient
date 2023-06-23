@@ -1,0 +1,127 @@
+<div class="card register-card">
+  <div class="card-header">Registruj se</div>
+  <div class="px-3 py-1">
+    <label>Registruj se kao:</label> <br />
+    <div class="d-flex register-options">
+      <input
+        type="radio"
+        name="userType"
+        value="student"
+        id="studentR"
+        checked
+        [(ngModel)]="mode"
+        (ngModelChange)="onModeChange($event)"
+      />
+      <label for="studentR">Student</label>
+
+      <input
+        type="radio"
+        name="userType"
+        value="nastavnik"
+        id="nastavnikR"
+        [(ngModel)]="mode"
+        (ngModelChange)="onModeChange($event)"
+      />
+      <label for="nastavnikR">Nastavnik</label>
+    </div>
+  </div>
+  <form
+    class="p-3"
+    [formGroup]="mode === 'student' ? studentForm : teacherForm"
+    (ngSubmit)="submitHandler()"
+  >
+    <app-input
+      label="JMBG"
+      placeholder="JMBG"
+      id="jmbg"
+      [control]="jmbg"
+    ></app-input>
+    <app-input
+      label="Ime"
+      placeholder="Ime"
+      id="ime"
+      [control]="ime"
+    ></app-input>
+    <app-input
+      label="Prezime"
+      placeholder="Prezime"
+      id="prezime"
+      [control]="prezime"
+    ></app-input>
+    <div class="form-group register-options d-flex">
+      <label>Pol</label>
+      <input type="radio" id="mR" value="M" formControlName="pol" />
+      <label for="mR">Muski</label>
+      <input type="radio" id="zR" value="Z" formControlName="pol" />
+      <label for="zR">Zenski</label>
+    </div>
+    <app-input
+      label="Email"
+      placeholder="Email"
+      id="email"
+      [control]="email"
+      type="email"
+    ></app-input>
+    <app-input
+      label="Username"
+      placeholder="Username"
+      id="username"
+      [control]="username"
+    ></app-input>
+    <app-input
+      label="Password"
+      placeholder="Password"
+      id="password"
+      [control]="password"
+      type="password"
+    ></app-input>
+    <app-input
+      label="Potvrdi password"
+      placeholder="Potvrdi password"
+      id="confirmPassword"
+      [control]="confirmPassword"
+      type="password"
+    ></app-input>
+    <app-input
+      *ngIf="mode === 'student'"
+      label="Adresa"
+      placeholder="Adresa"
+      id="adresa"
+      [control]="adresa"
+    ></app-input>
+
+    <ng-container *ngIf="mode === 'nastavnik'">
+      <app-input
+        label="Datum rodjenja"
+        id="datumRodjenja"
+        [control]="datumRodjenja"
+        type="date"
+      ></app-input>
+      <app-input
+        label="Godine radnog staza"
+        placeholder="Godine"
+        id="godine"
+        [control]="godineRadnogStaza"
+        type="number"
+      ></app-input>
+      <div>
+        <label>Zvanje</label>
+        <select class="form-control" formControlName="zvanjeId">
+          <option *ngFor="let zvanje of zvanja" [value]="zvanje.id">
+            {{ zvanje.naziv }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label>Tip Nastavnika</label>
+        <select class="form-control" formControlName="tipId">
+          <option *ngFor="let tip of tipovi" [value]="tip.id">
+            {{ tip.naziv }}
+          </option>
+        </select>
+      </div>
+    </ng-container>
+
+    <button type="submit" class="btn btn-primary mt-2">Registruj se</button>
+  </form>
+</div>
