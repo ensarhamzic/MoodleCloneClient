@@ -1,1 +1,60 @@
-<p>novi-admin works!</p>
+<div class="card register-card">
+  <div class="card-header">Registruj se</div>
+
+  <form class="p-3" [formGroup]="form" (ngSubmit)="submitHandler()">
+    <app-input
+      label="JMBG"
+      placeholder="JMBG"
+      id="jmbg"
+      [control]="jmbg"
+    ></app-input>
+    <app-input
+      label="Ime"
+      placeholder="Ime"
+      id="ime"
+      [control]="ime"
+    ></app-input>
+    <app-input
+      label="Prezime"
+      placeholder="Prezime"
+      id="prezime"
+      [control]="prezime"
+    ></app-input>
+    <div class="form-group register-options d-flex">
+      <label>Pol</label>
+      <input type="radio" id="mR" value="M" formControlName="pol" />
+      <label for="mR">Muski</label>
+      <input type="radio" id="zR" value="Z" formControlName="pol" />
+      <label for="zR">Zenski</label>
+    </div>
+    <app-input
+      label="Email"
+      placeholder="Email"
+      id="email"
+      [control]="email"
+      type="email"
+    ></app-input>
+    <app-input
+      label="Username"
+      placeholder="Username"
+      id="username"
+      [control]="username"
+    ></app-input>
+    <app-input
+      label="Password"
+      placeholder="Password"
+      id="password"
+      [control]="password"
+      type="password"
+    ></app-input>
+    <app-input
+      label="Potvrdi password"
+      placeholder="Potvrdi password"
+      id="confirmPassword"
+      [control]="confirmPassword"
+      type="password"
+    ></app-input>
+
+    <button type="submit" class="btn btn-primary mt-2">Registruj se</button>
+  </form>
+</div>

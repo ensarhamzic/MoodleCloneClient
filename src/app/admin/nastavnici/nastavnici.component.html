@@ -1,1 +1,36 @@
-<p>nastavnici works!</p>
+<div class="cards">
+  <ng-container *ngIf="nastavnici.length > 0">
+    <div class="card" *ngFor="let nastavnik of nastavnici">
+      <div class="card-header">
+        {{ nastavnik.osoba.ime }} {{ nastavnik.osoba.prezime }}
+      </div>
+      <div class="card-body">
+        <p class="card-text">JMBG: {{ nastavnik.osoba.jmbg }}</p>
+        <p class="card-text">Email: {{ nastavnik.osoba.email }}</p>
+        <p class="card-text">Username: {{ nastavnik.osoba.username }}</p>
+        <p class="card-text">Pol: {{ nastavnik.osoba.pol }}</p>
+        <p class="card-text">Zvanje: {{ nastavnik.zvanje.naziv }}</p>
+        <p class="card-text">Tip: {{ nastavnik.tip.naziv }}</p>
+      </div>
+      <div class="card-footer">
+        <button
+          class="btn btn-danger"
+          (click)="deleteTeacher(nastavnik.osoba.jmbg)"
+        >
+          Obrisi
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="verifyTeacher(nastavnik.osoba.jmbg)"
+        >
+          Potvrdi
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="nastavnici.length === 0">
+    <div class="card">
+      <div class="card-header">Nema nastavnika za potvrdu</div>
+    </div>
+  </ng-container>
+</div>

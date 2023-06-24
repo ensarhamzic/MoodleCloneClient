@@ -1,6 +1,7 @@
 export interface IUser {
-  JMBG: string;
+  jmbg: string;
   ime: string;
+  pol: string;
   prezime: string;
   username: string;
   email: string;
