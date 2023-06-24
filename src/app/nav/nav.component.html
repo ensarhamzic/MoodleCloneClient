@@ -1,13 +1,62 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
   <a class="navbar-brand" routerLink="login">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="login" routerLinkActive="active">Login</a>
-      <a class="nav-item nav-link" routerLink="register" routerLinkActive="active">Register</a>
+      <a
+        class="nav-item nav-link"
+        *ngIf="!(loggedIn$ | async)"
+        routerLink="login"
+        routerLinkActive="active"
+        >Login</a
+      >
+      <a
+        class="nav-item nav-link"
+        *ngIf="!(loggedIn$ | async)"
+        routerLink="register"
+        routerLinkActive="active"
+        >Register</a
+      >
+
+      <a
+        class="nav-item nav-link"
+        *ngIf="(role$ | async) === 'Admin'"
+        routerLink="admin/nastavnici"
+        routerLinkActive="active"
+        >Nastavnici</a
+      >
+      <a
+        class="nav-item nav-link"
+        *ngIf="(role$ | async) === 'Admin'"
+        routerLink="admin/studenti"
+        routerLinkActive="active"
+        >Studenti</a
+      >
+      <a
+        class="nav-item nav-link"
+        *ngIf="(role$ | async) === 'Admin'"
+        routerLink="admin/novi-admin"
+        routerLinkActive="active"
+        >Novi Admin</a
+      >
+
+      <button
+        class="nav-item nav-link"
+        *ngIf="loggedIn$ | async"
+        (click)="logout()"
+      >
+        Logout
+      </button>
     </div>
   </div>
 </nav>

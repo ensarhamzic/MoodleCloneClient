@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="card login-card">
+  <div class="card-header">Prijavi se</div>
+  <form class="p-3" [formGroup]="loginForm" (ngSubmit)="submitHandler()">
+    <app-input
+      label="Username"
+      placeholder="Username"
+      id="username"
+      [control]="username"
+    ></app-input>
+    <app-input
+      label="Password"
+      placeholder="Password"
+      id="password"
+      [control]="password"
+      type="password"
+    ></app-input>
+    <button type="submit" class="btn btn-primary mt-2">Prijavi se</button>
+    <p class="text-danger" *ngIf="loginError$ | async">
+      {{ loginError$ | async }}
+    </p>
+  </form>
+</div>

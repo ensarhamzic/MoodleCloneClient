@@ -8,7 +8,10 @@ import { RegisterValidators } from './register-validators';
 import { EmailTakenValidator } from './email-taken-validator';
 import { UsernameTakenValidator } from './username-taken-validator';
 import { JMBGTakenValidator } from './jmbgtaken-validator';
-import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { register } from 'src/app/state/auth/auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -43,8 +46,14 @@ export class RegisterComponent {
     [Validators.required, Validators.email],
     [this.emailTakenValidator.validate]
   );
-  password = new FormControl('', [Validators.required]);
-  confirmPassword = new FormControl('', [Validators.required]);
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+  confirmPassword = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
 
   adresa = new FormControl('', [Validators.required]);
 
@@ -56,13 +65,16 @@ export class RegisterComponent {
   studentForm: FormGroup = new FormGroup({});
   teacherForm: FormGroup = new FormGroup({});
 
+  loggedIn$ = this.store.select((state) => state.auth.loggedIn);
+
   constructor(
     private zvanjeService: ZvanjeService,
     private tipService: TipService,
-    private authService: AuthService,
     private emailTakenValidator: EmailTakenValidator,
     private usernameTakenValidator: UsernameTakenValidator,
-    private jmbgTakenValidator: JMBGTakenValidator
+    private jmbgTakenValidator: JMBGTakenValidator,
+    private store: Store<AppState>,
+    private router: Router
   ) {
     this.studentForm = new FormGroup(
       {
@@ -96,6 +108,12 @@ export class RegisterComponent {
       },
       [RegisterValidators.match('password', 'confirmPassword')]
     );
+
+    this.loggedIn$.subscribe((loggedIn) => {
+      if (loggedIn) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   onModeChange(mode: string) {
@@ -116,13 +134,13 @@ export class RegisterComponent {
 
   submitHandler() {
     if (this.mode === 'student' && this.studentForm.valid) {
-      this.authService
-        .registerStudent(this.studentForm.value)
-        .subscribe((res) => {
-          console.log(res);
-        });
+      this.store.dispatch(
+        register({ user: this.studentForm.value, regType: this.mode })
+      );
     } else if (this.mode === 'nastavnik' && this.teacherForm.valid) {
-      this.authService.registerTeacher(this.teacherForm.value);
+      this.store.dispatch(
+        register({ user: this.teacherForm.value, regType: this.mode })
+      );
     }
   }
 }
