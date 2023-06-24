@@ -133,6 +133,7 @@ export class RegisterComponent {
   }
 
   submitHandler() {
+    console.log('a');
     if (this.mode === 'student' && this.studentForm.valid) {
       this.store.dispatch(
         register({ user: this.studentForm.value, regType: this.mode })

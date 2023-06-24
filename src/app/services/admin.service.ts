@@ -8,6 +8,7 @@ import { IStudent } from '../models/student.model';
 import { IAuth } from '../models/auth.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
+import { ISmer } from '../models/smer.module';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,42 @@ export class AdminService {
   getStudents(): Observable<IStudent[]> {
     return this.http.get<IStudent[]>(`${environment.api_url}/users/students`);
   }
+
+  getStudent(jmbg: string): Observable<IStudent> {
+    return this.http.get<IStudent>(
+      `${environment.api_url}/users/students/${jmbg}`
+    );
+  }
+
+  getSmerovi(): Observable<ISmer[]> {
+    return this.http.get<ISmer[]>(`${environment.api_url}/smerovi`);
+  }
+
+  dodajStudentaNaSmer(
+    jmbg: string,
+    smerId: number,
+    brojIndeksa: string
+  ): Observable<string> {
+    return this.http.post<string>(
+      `${environment.api_url}/smerovi`,
+      {
+        studentJMBG: jmbg,
+        smerId,
+        brojIndeksa,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  indexTaken = (index: string): Observable<boolean> => {
+    return this.http.get<boolean>(
+      `${environment.api_url}/smerovi/index-exists/${index}`
+    );
+  };
 
   verifyTeacher(jmbg: string): Observable<string> {
     return this.http.post<string>(

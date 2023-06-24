@@ -1,0 +1,42 @@
+<div class="card" *ngIf="student">
+  <div class="card-header">
+    {{ student.osoba.ime }} {{ student.osoba.prezime }}
+  </div>
+  <div class="card-body">
+    <p class="card-text">JMBG: {{ student.osoba.jmbg }}</p>
+    <p class="card-text">Email: {{ student.osoba.email }}</p>
+    <p class="card-text">Username: {{ student.osoba.username }}</p>
+    <p class="card-text">Pol: {{ student.osoba.pol }}</p>
+    <p class="card-text">Adresa: {{ student.adresa }}</p>
+
+    <div *ngIf="student.smerovi.length > 0">
+      <p class="card-text">Smerovi:</p>
+      <ul>
+        <li *ngFor="let studentSmer of student.smerovi">
+          {{ studentSmer.smer.naziv }} : {{ studentSmer.brojIndeksa }}
+        </li>
+      </ul>
+    </div>
+
+    <hr />
+    <div>
+      <p class="card-text">Upisi na smer:</p>
+      <form [formGroup]="form" (ngSubmit)="upisi()">
+        <div>
+          <label>Smer</label> <br />
+          <select formControlName="smerId">
+            <option *ngFor="let smer of smerovi" [value]="smer.id">
+              {{ smer.naziv }}
+            </option>
+          </select>
+        </div>
+        <app-input
+          [control]="brojIndeksa"
+          label="Broj indeksa"
+          placeholder="Broj indeksa"
+        />
+        <button class="btn btn-primary mt-2">Dodaj</button>
+      </form>
+    </div>
+  </div>
+</div>

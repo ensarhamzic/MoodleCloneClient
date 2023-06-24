@@ -1,17 +1,9 @@
-import { NgModule, inject } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  RouterModule,
-  RouterStateSnapshot,
-  Routes,
-} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { loggedIn, loggedOut } from './auth/auth.guard';
-import { NastavniciComponent } from './admin/nastavnici/nastavnici.component';
-import { StudentiComponent } from './admin/studenti/studenti.component';
-import { NoviAdminComponent } from './admin/novi-admin/novi-admin.component';
-import { isAdmin } from './admin/admin.guard';
+import { loggedOut } from './auth/auth.guard';
+import { AdminRoutingModule } from './admin/admin-routing.module';
 
 const routes: Routes = [
   {
@@ -20,25 +12,10 @@ const routes: Routes = [
     canActivate: [loggedOut],
   },
   { path: 'register', component: RegisterComponent, canActivate: [loggedOut] },
-  {
-    path: 'admin/nastavnici',
-    component: NastavniciComponent,
-    canActivate: [isAdmin],
-  },
-  {
-    path: 'admin/studenti',
-    component: StudentiComponent,
-    canActivate: [isAdmin],
-  },
-  {
-    path: 'admin/novi-admin',
-    component: NoviAdminComponent,
-    canActivate: [isAdmin],
-  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), AdminRoutingModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

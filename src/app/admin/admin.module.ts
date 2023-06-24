@@ -5,9 +5,16 @@ import { StudentiComponent } from './studenti/studenti.component';
 import { NoviAdminComponent } from './novi-admin/novi-admin.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StudentComponent } from './student/student.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [NastavniciComponent, StudentiComponent, NoviAdminComponent],
-  imports: [CommonModule, SharedModule, ReactiveFormsModule],
+  declarations: [
+    NastavniciComponent,
+    StudentiComponent,
+    NoviAdminComponent,
+    StudentComponent,
+  ],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule, RouterModule],
 })
 export class AdminModule {}
