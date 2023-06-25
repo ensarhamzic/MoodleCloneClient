@@ -1,1 +1,27 @@
-<p>courses works!</p>
+<div class="cards">
+  <ng-container *ngIf="courses.length > 0">
+    <div class="card" *ngFor="let course of courses">
+      <div class="card-header">
+        <a [routerLink]="['/courses', course.id]">
+          {{ course.naziv }}
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Profesor: {{ course.profesor.osoba.ime }}
+          {{ course.profesor.osoba.prezime }}
+        </p>
+        <p class="card-text">
+          Asistent: {{ course.asistent.osoba.ime }}
+          {{ course.asistent.osoba.prezime }}
+        </p>
+        <p class="card-text">Smer: {{ course.smer.naziv }}</p>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="courses.length === 0">
+    <div class="card">
+      <div class="card-header">Nema kurseva</div>
+    </div>
+  </ng-container>
+</div>

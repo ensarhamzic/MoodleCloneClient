@@ -5,6 +5,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { loggedOut } from './auth/auth.guard';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { TeacherRoutingModule } from './teacher/teacher-routing.module';
+import { CourseRoutingModule } from './course/course-routing.module';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
     canActivate: [loggedOut],
   },
   { path: 'register', component: RegisterComponent, canActivate: [loggedOut] },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -20,6 +22,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AdminRoutingModule,
     TeacherRoutingModule,
+    CourseRoutingModule,
   ],
   exports: [RouterModule],
 })

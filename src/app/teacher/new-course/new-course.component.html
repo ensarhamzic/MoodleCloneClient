@@ -1,1 +1,39 @@
-<p>new-course works!</p>
+<div class="card register-card">
+  <div class="card-header">Novi kurs</div>
+  <form class="p-3" [formGroup]="form" (ngSubmit)="submitHandler()">
+    <app-input
+      label="Naziv"
+      placeholder="Naziv"
+      id="Naziv"
+      [control]="naziv"
+    ></app-input>
+
+    <div class="cbDiv">
+      <label for="obavezan">Hronoloski mod</label>
+      <input type="checkbox" id="obavezan" formControlName="hronoloskiMod" />
+    </div>
+
+    <div>
+      <label>Smer</label>
+      <select class="form-control" formControlName="smerId">
+        <option *ngFor="let smer of smerovi" [value]="smer.id">
+          {{ smer.naziv }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label>Asistent</label>
+      <select class="form-control" formControlName="asistentJMBG">
+        <option
+          *ngFor="let asistent of asistenti"
+          [value]="asistent.osoba.jmbg"
+        >
+          {{ asistent.osoba.ime }} {{ asistent.osoba.prezime }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Registruj se</button>
+  </form>
+</div>

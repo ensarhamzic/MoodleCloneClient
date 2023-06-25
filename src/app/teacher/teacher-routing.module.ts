@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { isTeacher } from './teacher.guard';
 import { CoursesComponent } from './courses/courses.component';
 import { NewCourseComponent } from './new-course/new-course.component';
-import { CourseComponent } from './course/course.component';
+import { isProfesor, isTeacher } from './teacher.guard';
 
 const routes: Routes = [
   {
@@ -11,8 +10,11 @@ const routes: Routes = [
     canActivate: [isTeacher],
     children: [
       { path: 'courses', component: CoursesComponent },
-      { path: 'new-course', component: NewCourseComponent },
-      { path: 'courses/:id', component: CourseComponent },
+      {
+        path: 'new-course',
+        component: NewCourseComponent,
+        canActivate: [isProfesor],
+      },
     ],
   },
 ];

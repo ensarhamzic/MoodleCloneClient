@@ -15,6 +15,8 @@ import { AuthEffects } from './state/auth/auth.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AdminModule } from './admin/admin.module';
 import { ToastrModule } from 'ngx-toastr';
+import { TeacherModule } from './teacher/teacher.module';
+import { CourseModule } from './course/course.module';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -29,6 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     AdminModule,
+    TeacherModule,
+    CourseModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

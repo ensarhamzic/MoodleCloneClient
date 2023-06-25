@@ -7,10 +7,36 @@ export const isTeacher: CanActivateFn = () => {
   const router = inject(Router);
   const store = inject(Store<AppState>);
   store
-    .select((state) => state.auth)
-    .subscribe((auth) => {
-      console.log(auth);
-      if (auth.role !== 'Teacher' || !auth.verified) {
+    .select((state) => state.auth.role)
+    .subscribe((role) => {
+      console.log(role);
+      if (role !== 'Profesor' && role !== 'Asistent') {
+        router.navigate(['/']);
+      }
+    });
+  return true;
+};
+
+export const isProfesor: CanActivateFn = () => {
+  const router = inject(Router);
+  const store = inject(Store<AppState>);
+  store
+    .select((state) => state.auth.role)
+    .subscribe((role) => {
+      if (role !== 'Profesor') {
+        router.navigate(['/']);
+      }
+    });
+  return true;
+};
+
+export const isAsistent: CanActivateFn = () => {
+  const router = inject(Router);
+  const store = inject(Store<AppState>);
+  store
+    .select((state) => state.auth.role)
+    .subscribe((role) => {
+      if (role !== 'Asistent') {
         router.navigate(['/']);
       }
     });

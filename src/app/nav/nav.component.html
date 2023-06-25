@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
-  <a class="navbar-brand" routerLink="login">Moodle</a>
+  <a class="navbar-brand" routerLink="">Moodle</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -49,20 +49,20 @@
         ></ng-container
       >
 
-      <ng-container *ngIf="(role$ | async) === 'Teacher'"
-        ><a
-          class="nav-item nav-link"
-          routerLink="teacher/courses"
-          routerLinkActive="active"
-          >Kursevi</a
-        >
-        <a
-          class="nav-item nav-link"
-          routerLink="teacher/new-course"
-          routerLinkActive="active"
-          >Novi Kurs</a
-        >
-      </ng-container>
+      <a
+        *ngIf="(role$ | async) === 'Profesor' || (role$ | async) === 'Asistent'"
+        class="nav-item nav-link"
+        routerLink="teacher/courses"
+        routerLinkActive="active"
+        >Kursevi</a
+      >
+      <a
+        *ngIf="(role$ | async) === 'Profesor'"
+        class="nav-item nav-link"
+        routerLink="teacher/new-course"
+        routerLinkActive="active"
+        >Novi Kurs</a
+      >
 
       <button
         class="nav-item nav-link"
