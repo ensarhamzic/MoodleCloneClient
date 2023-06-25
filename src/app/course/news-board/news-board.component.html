@@ -3,16 +3,25 @@
   <a *ngIf="canManage" routerLink="news/add" class="btn btn-link">
     Dodaj obavestenje
   </a>
-  <div class="p-2" *ngFor="let obavestenje of obavestenja">
-    <div>
-      <a [routerLink]="['news', obavestenje.id]">{{ obavestenje.naslov }}</a>
+  <ng-container *ngIf="hasAccess">
+    <div class="p-2" *ngFor="let obavestenje of obavestenja">
+      <div>
+        <a [routerLink]="['news', obavestenje.id]">{{ obavestenje.naslov }}</a>
+      </div>
+      <div class="text-muted">{{ obavestenje.datum | date }}</div>
     </div>
-    <div class="text-muted">{{ obavestenje.datum | date }}</div>
-  </div>
-  <div class="text-muted p-2" *ngIf="obavestenja.length == 0">
-    Nema obavestenja
-  </div>
-  <a *ngIf="obavestenja.length > 0" routerLink="news" class="btn btn-link">
-    Vidi sve
-  </a>
+    <div class="text-muted p-2" *ngIf="obavestenja.length == 0">
+      Nema obavestenja
+    </div>
+    <a *ngIf="obavestenja.length > 0" routerLink="news" class="btn btn-link">
+      Vidi sve
+    </a>
+  </ng-container>
+  <ng-container *ngIf="!hasAccess">
+    <div class="p-2">
+      <div class="alert alert-danger">
+        <p>Niste prijavljeni na kurs</p>
+      </div>
+    </div>
+  </ng-container>
 </div>

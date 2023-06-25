@@ -9,6 +9,7 @@ import {
   register,
   registerFailure,
   registerSuccess,
+  teacherRegisterSuccess,
 } from './auth.actions';
 
 export interface AuthState {
@@ -47,6 +48,19 @@ export const authReducer = createReducer(
     };
   }),
   on(registerSuccess, (state, { data }) => {
+    localStorage.setItem('token', data.token);
+    return {
+      ...state,
+      loading: false,
+      osoba: data.osoba,
+      token: data.token,
+      role: data.role,
+      verified: data.verified,
+      loggedIn: true,
+      error: null,
+    };
+  }),
+  on(teacherRegisterSuccess, (state, { data }) => {
     localStorage.setItem('token', data.token);
     return {
       ...state,

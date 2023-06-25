@@ -1,1 +1,4 @@
-<p>news works!</p>
+<div class="card obavestenje-card" *ngFor="let ob of obavestenja">
+  <div class="card-header">{{ ob.naslov }}</div>
+  <div class="p-2">{{ ob.sadrzaj }}</div>
+</div>

@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { register } from 'src/app/state/auth/auth.actions';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -133,13 +134,11 @@ export class RegisterComponent {
   }
 
   submitHandler() {
-    console.log('a');
     if (this.mode === 'student' && this.studentForm.valid) {
       this.store.dispatch(
         register({ user: this.studentForm.value, regType: this.mode })
       );
     } else if (this.mode === 'nastavnik' && this.teacherForm.valid) {
-      console.log(this.teacherForm.value);
       this.store.dispatch(
         register({ user: this.teacherForm.value, regType: this.mode })
       );

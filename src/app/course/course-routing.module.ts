@@ -17,13 +17,13 @@ const routes: Routes = [
     component: CourseComponent,
   },
   {
-    path: 'courses/:id/news/:newsId',
-    component: ObavestenjeComponent,
-  },
-  {
     path: 'courses/:id/news/add',
     component: NewObavestenjeComponent,
     canActivate: [canManage],
+  },
+  {
+    path: 'courses/:id/news/:newsId',
+    component: ObavestenjeComponent,
   },
   {
     path: 'courses/:id/news',

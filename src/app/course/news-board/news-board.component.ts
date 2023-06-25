@@ -11,6 +11,7 @@ import { CourseService } from 'src/app/services/course.service';
 })
 export class NewsBoardComponent {
   @Input() canManage: boolean = false;
+  @Input() hasAccess: boolean = false;
   obavestenja: IObavestenje[] = [];
 
   constructor(

@@ -8,9 +8,43 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">Materijali</div>
+        <!-- Materials here -->
+      </div>
+      <div *ngIf="!course.materijali && !pending">
+        <div class="alert alert-danger">
+          <p>Niste prijavljeni na kurs</p>
+          <p>
+            <button
+              class="btn btn-secondary"
+              (click)="prijaviSeNaKurs()"
+              [disabled]="prijavljivanje"
+            >
+              Prijavi se
+            </button>
+          </p>
+        </div>
+      </div>
+      <div *ngIf="!course.materijali && pending">
+        <div class="alert alert-danger">
+          <p>Cekanje na potvrdu prijave</p>
+          <p>
+            <button
+              class="btn btn-secondary"
+              (click)="prijaviSeNaKurs()"
+              [disabled]="prijavljivanje"
+            >
+              Otkazi prijavu
+            </button>
+          </p>
+        </div>
       </div>
     </div>
-    <div class="col-md-4"><app-news-board [canManage]="canManage" /></div>
+    <div class="col-md-4">
+      <app-news-board
+        [canManage]="canManage"
+        [hasAccess]="!!course.materijali"
+      />
+    </div>
   </div>
 </ng-container>
 

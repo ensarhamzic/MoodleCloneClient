@@ -9,6 +9,10 @@ export const registerSuccess = createAction(
   '[Auth] Register Success',
   props<{ data: IAuth }>()
 );
+export const teacherRegisterSuccess = createAction(
+  '[Auth] Teacher Register Success',
+  props<{ data: IAuth }>()
+);
 export const registerFailure = createAction(
   '[Auth] Register Failure',
   props<{ error: any }>()

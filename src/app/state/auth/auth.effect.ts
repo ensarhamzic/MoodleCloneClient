@@ -10,18 +10,23 @@ import {
   login,
   loginFailure,
   loginSuccess,
+  logout,
   register,
   registerFailure,
   registerSuccess,
 } from './auth.actions';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   register$ = createEffect(() =>
@@ -37,7 +42,13 @@ export class AuthEffects {
         else obs = this.authService.registerStudent(user);
 
         return from(obs).pipe(
-          map((data) => registerSuccess({ data })),
+          map((data) =>
+            regType === 'nastavnik' ? logout() : registerSuccess({ data })
+          ),
+          tap(() => {
+            this.toastr.success('Uspešno ste se registrovali!');
+            this.router.navigate(['/login']);
+          }),
           catchError((error) =>
             of(registerFailure({ error: error.error.message }))
           )

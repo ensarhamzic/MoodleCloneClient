@@ -57,4 +57,16 @@ export class CourseService {
       }
     );
   }
+
+  prijaviSeNaKurs(kursId: number): Observable<any> {
+    return this.http.post<any>(
+      `${environment.api_url}/kursevi/${kursId}/prijava`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
 }
