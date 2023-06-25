@@ -1,1 +1,19 @@
-<p>course works!</p>
+<ng-container *ngIf="loading">
+  <div class="alert alert-info">Ucitavanje...</div>
+</ng-container>
+
+<ng-container *ngIf="course">
+  <h1>{{ course.naziv }}</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Materijali</div>
+      </div>
+    </div>
+    <div class="col-md-4"><app-news-board [canManage]="canManage" /></div>
+  </div>
+</ng-container>
+
+<div class="alert alert-danger" *ngIf="error && !course">
+  Kurs nije pronadjen
+</div>

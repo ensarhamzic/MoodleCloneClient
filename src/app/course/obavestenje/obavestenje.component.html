@@ -1,0 +1,8 @@
+<div class="card obavestenje-card" *ngIf="obavestenje">
+  <div class="card-header">{{ obavestenje.naslov }}</div>
+  <div class="p-2">{{ obavestenje.sadrzaj }}</div>
+</div>
+
+<div *ngIf="!obavestenje" class="card">
+  <div class="card-header">Obavestenje ne postoji</div>
+</div>

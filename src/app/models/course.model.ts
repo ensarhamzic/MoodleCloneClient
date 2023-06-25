@@ -1,3 +1,4 @@
+import { IMaterijal } from './materijal.model';
 import { ISmer } from './smer.module';
 import { ITeacher } from './teacher.model';
 
@@ -7,4 +8,5 @@ export interface ICourse {
   smer: ISmer;
   asistent: ITeacher;
   profesor: ITeacher;
+  materijali: IMaterijal[];
 }

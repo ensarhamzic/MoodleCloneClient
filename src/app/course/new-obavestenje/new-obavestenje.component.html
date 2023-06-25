@@ -1,0 +1,23 @@
+<div class="card news-card">
+  <div class="card-header">Dodaj obavestenje</div>
+  <form class="p-3" [formGroup]="form" (ngSubmit)="submit()">
+    <app-input
+      label="Naslov"
+      placeholder="Naslov"
+      id="Naslov"
+      [control]="naslov"
+    ></app-input>
+    <textarea
+      formControlName="sadrzaj"
+      class="form-control mt-2"
+      placeholder="Sadrzaj"
+    ></textarea>
+    <p
+      class="text-danger"
+      *ngIf="sadrzaj.touched && sadrzaj.dirty && sadrzaj?.errors?.required"
+    >
+      Sadrzaj je obavezan
+    </p>
+    <button type="submit" class="btn btn-primary mt-2">Dodaj</button>
+  </form>
+</div>

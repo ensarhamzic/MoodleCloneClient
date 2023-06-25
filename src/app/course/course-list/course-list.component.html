@@ -1,1 +1,12 @@
-<p>course-list works!</p>
+<div class="card container-card">
+  <div class="card-header">Kursevi</div>
+  <div class="card card-item" *ngFor="let smer of smerovi">
+    <div>{{ smer.naziv }}</div>
+    <ul *ngIf="smer.kursevi.length > 0">
+      <li *ngFor="let kurs of smer.kursevi">
+        <a [routerLink]="['/courses', kurs.id]">{{ kurs.naziv }}</a>
+      </li>
+    </ul>
+    <div class="text-muted" *ngIf="smer.kursevi.length == 0">Nema kurseva</div>
+  </div>
+</div>
