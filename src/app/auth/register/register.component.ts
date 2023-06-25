@@ -48,11 +48,11 @@ export class RegisterComponent {
   );
   password = new FormControl('', [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(8),
   ]);
   confirmPassword = new FormControl('', [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(8),
   ]);
 
   adresa = new FormControl('', [Validators.required]);
@@ -139,6 +139,7 @@ export class RegisterComponent {
         register({ user: this.studentForm.value, regType: this.mode })
       );
     } else if (this.mode === 'nastavnik' && this.teacherForm.valid) {
+      console.log(this.teacherForm.value);
       this.store.dispatch(
         register({ user: this.teacherForm.value, regType: this.mode })
       );

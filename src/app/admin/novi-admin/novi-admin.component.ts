@@ -58,11 +58,11 @@ export class NoviAdminComponent {
   );
   password = new FormControl('', [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(8),
   ]);
   confirmPassword = new FormControl('', [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(8),
   ]);
 
   submitHandler() {

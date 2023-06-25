@@ -28,27 +28,41 @@
         >Register</a
       >
 
-      <a
-        class="nav-item nav-link"
-        *ngIf="(role$ | async) === 'Admin'"
-        routerLink="admin/nastavnici"
-        routerLinkActive="active"
-        >Nastavnici</a
+      <ng-container *ngIf="(role$ | async) === 'Admin'"
+        ><a
+          class="nav-item nav-link"
+          routerLink="admin/nastavnici"
+          routerLinkActive="active"
+          >Nastavnici</a
+        >
+        <a
+          class="nav-item nav-link"
+          routerLink="admin/studenti"
+          routerLinkActive="active"
+          >Studenti</a
+        >
+        <a
+          class="nav-item nav-link"
+          routerLink="admin/novi-admin"
+          routerLinkActive="active"
+          >Novi Admin</a
+        ></ng-container
       >
-      <a
-        class="nav-item nav-link"
-        *ngIf="(role$ | async) === 'Admin'"
-        routerLink="admin/studenti"
-        routerLinkActive="active"
-        >Studenti</a
-      >
-      <a
-        class="nav-item nav-link"
-        *ngIf="(role$ | async) === 'Admin'"
-        routerLink="admin/novi-admin"
-        routerLinkActive="active"
-        >Novi Admin</a
-      >
+
+      <ng-container *ngIf="(role$ | async) === 'Teacher'"
+        ><a
+          class="nav-item nav-link"
+          routerLink="teacher/courses"
+          routerLinkActive="active"
+          >Kursevi</a
+        >
+        <a
+          class="nav-item nav-link"
+          routerLink="teacher/new-course"
+          routerLinkActive="active"
+          >Novi Kurs</a
+        >
+      </ng-container>
 
       <button
         class="nav-item nav-link"
