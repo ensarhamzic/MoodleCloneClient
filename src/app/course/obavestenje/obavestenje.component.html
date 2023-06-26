@@ -3,6 +3,14 @@
   <div class="p-2">{{ obavestenje.sadrzaj }}</div>
 </div>
 
+<div class="card obavestenje-card mt-2" *ngIf="obavestenje?.studenti">
+  <div class="card-header">Pregledi</div>
+  <div class="p-2" *ngFor="let student of obavestenje.studenti">
+    {{ student.email }} {{ student.ime }} {{ student.ime }} |
+    {{ student.datum | date : "dd.MM.yyyy hh:mm:ss" }}
+  </div>
+</div>
+
 <div *ngIf="!obavestenje" class="card">
   <div class="card-header">Obavestenje ne postoji</div>
 </div>

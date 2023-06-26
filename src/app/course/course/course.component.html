@@ -14,7 +14,7 @@
         <a routerLink="add-material" class="btn btn-link" *ngIf="canManage"
           >Dodaj materijal</a
         >
-        <div class="p-2">
+        <div class="p-2" *ngIf="course.materijali">
           <div>
             <h5>Predavanja</h5>
             <p *ngFor="let pred of predavanja">

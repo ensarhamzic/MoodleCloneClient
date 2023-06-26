@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
 import { ISmer } from '../models/smer.module';
 import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ICourse } from '../models/course.model';
@@ -34,17 +35,42 @@ export class CourseService {
   }
 
   getNews(kursId: number, numberOfNews?: number): Observable<IObavestenje[]> {
-    var url = `${environment.api_url}/obavestenja/kursevi/${kursId}`;
+    let url = `${environment.api_url}/obavestenja/kursevi/${kursId}`;
     if (numberOfNews) {
       url += `?num=${numberOfNews}`;
     }
     return this.http.get<IObavestenje[]>(url);
   }
 
-  getNewsById(id: number): Observable<IObavestenje> {
-    return this.http.get<IObavestenje>(
-      `${environment.api_url}/obavestenja/${id}`
-    );
+  getNewsById(id: number): Observable<any> {
+    return this.http
+      .get<any>(`${environment.api_url}/obavestenja/${id}`, {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      })
+      .pipe(
+        tap(console.log),
+        map((data) => {
+          return {
+            id: data.id,
+            naslov: data.naslov,
+            sadrzaj: data.sadrzaj,
+            datum: data.datum,
+            kurs: data.kurs,
+            nastavnik: data.nastavnik,
+            studenti:
+              (data.studenti &&
+                data.studenti.map((s: any) => {
+                  return {
+                    ...s.student.osoba,
+                    datum: s.datum,
+                  };
+                })) ||
+              null,
+          };
+        })
+      );
   }
 
   addNews(news: any): Observable<IObavestenje> {

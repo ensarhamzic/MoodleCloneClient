@@ -47,12 +47,14 @@ export class CourseComponent {
         this.loading = false;
         this.error = false;
 
-        this.predavanja = data.kurs.materijali
-          .filter((m: IMaterijal) => m.tip == 'Predavanja')
-          .sort((a: any, b: any) => a.datum - b.datum);
-        this.vezbe = data.kurs.materijali
-          .filter((m: IMaterijal) => m.tip == 'Vezbe')
-          .sort((a: any, b: any) => a.datum - b.datum);
+        if (data.kurs.materijali) {
+          this.predavanja = data.kurs.materijali
+            .filter((m: IMaterijal) => m.tip == 'Predavanja')
+            .sort((a: any, b: any) => a.datum - b.datum);
+          this.vezbe = data.kurs.materijali
+            .filter((m: IMaterijal) => m.tip == 'Vezbe')
+            .sort((a: any, b: any) => a.datum - b.datum);
+        }
       },
       error: () => {
         this.loading = false;

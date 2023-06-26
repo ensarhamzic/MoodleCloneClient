@@ -9,7 +9,7 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./obavestenje.component.scss'],
 })
 export class ObavestenjeComponent {
-  obavestenje!: IObavestenje;
+  obavestenje: any = null;
 
   constructor(
     private courseService: CourseService,
@@ -17,7 +17,6 @@ export class ObavestenjeComponent {
   ) {
     this.route.params.subscribe((params) => {
       this.courseService.getNewsById(params.newsId).subscribe((data) => {
-        console.log('data', data);
         this.obavestenje = data;
       });
     });
