@@ -26,7 +26,6 @@ export class CourseService {
   }
 
   getCourseById(id: number): Observable<any> {
-    console.log(this.token);
     return this.http.get<any>(`${environment.api_url}/kursevi/${id}`, {
       headers: {
         Authorization: `Bearer ${this.token}`,
@@ -108,6 +107,46 @@ export class CourseService {
     data.append('file', materijal.file);
     return this.http.post<IMaterijal>(
       `${environment.api_url}/kursevi/${kursId}/materijali`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  getMaterijal(materijalId: number): Observable<IMaterijal> {
+    return this.http.get<IMaterijal>(
+      `${environment.api_url}/kursevi/materijali/${materijalId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  izbrisiMaterijal(materijalId: number): Observable<IMaterijal> {
+    return this.http.delete<IMaterijal>(
+      `${environment.api_url}/kursevi/materijali/${materijalId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  azurirajMaterijal(
+    materijalId: number,
+    materijal: any
+  ): Observable<IMaterijal> {
+    const data = new FormData();
+    data.append('naziv', materijal.naziv);
+    data.append('file', materijal.file);
+    return this.http.put<IMaterijal>(
+      `${environment.api_url}/kursevi/materijali/${materijalId}`,
       data,
       {
         headers: {

@@ -21,6 +21,7 @@ export class CourseComponent {
   error: boolean = false;
   loggedIn$ = this.store.select((state) => state.auth.loggedIn);
   loggedIn: boolean = false;
+  role$ = this.store.select((state) => state.auth.role);
   brojPrijava?: number;
 
   predavanja: IMaterijal[] = [];
@@ -36,28 +37,27 @@ export class CourseComponent {
     this.loggedIn$.subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
     });
-    this.route.params.subscribe((params) => {
-      this.courseService.getCourseById(params.id).subscribe({
-        next: (data) => {
-          this.course = data.kurs;
-          this.canManage = data.canManage;
-          this.pending = data.pending;
-          this.brojPrijava = data.brojPrijava;
-          this.loading = false;
-          this.error = false;
+    const courseId = this.route.snapshot.params.id;
+    this.courseService.getCourseById(courseId).subscribe({
+      next: (data) => {
+        this.course = data.kurs;
+        this.canManage = data.canManage;
+        this.pending = data.pending;
+        this.brojPrijava = data.brojPrijava;
+        this.loading = false;
+        this.error = false;
 
-          this.predavanja = data.kurs.materijali
-            .filter((m: IMaterijal) => m.tip == 'Predavanja')
-            .sort((a: any, b: any) => a.datum - b.datum);
-          this.vezbe = data.kurs.materijali
-            .filter((m: IMaterijal) => m.tip == 'Vezbe')
-            .sort((a: any, b: any) => a.datum - b.datum);
-        },
-        error: () => {
-          this.loading = false;
-          this.error = true;
-        },
-      });
+        this.predavanja = data.kurs.materijali
+          .filter((m: IMaterijal) => m.tip == 'Predavanja')
+          .sort((a: any, b: any) => a.datum - b.datum);
+        this.vezbe = data.kurs.materijali
+          .filter((m: IMaterijal) => m.tip == 'Vezbe')
+          .sort((a: any, b: any) => a.datum - b.datum);
+      },
+      error: () => {
+        this.loading = false;
+        this.error = true;
+      },
     });
   }
 

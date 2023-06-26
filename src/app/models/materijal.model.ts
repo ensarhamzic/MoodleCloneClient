@@ -4,4 +4,5 @@ export interface IMaterijal {
   sadrzaj: string;
   tip: string;
   datum: Date;
+  kursId: number;
 }

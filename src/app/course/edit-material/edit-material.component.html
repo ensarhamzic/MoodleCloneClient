@@ -1,0 +1,56 @@
+<div class="card new-material-card">
+  <div class="card-header">Prijavi se</div>
+  <form class="p-3" [formGroup]="form">
+    <app-input
+      label="Naziv"
+      placeholder="Naziv"
+      id="Naziv"
+      [control]="naziv"
+    ></app-input>
+    <div class="form-group">
+      <label for="file">Materijal</label>
+      <input
+        type="file"
+        class="form-control"
+        id="file"
+        placeholder="Materijal"
+        formControlName="fileName"
+        (change)="onFileChange($event)"
+      />
+      <ng-container
+        *ngIf="form.get('file')?.touched && form.get('file')?.dirty"
+      >
+        <div class="text-danger" *ngIf="form.get('file')?.errors?.required">
+          Fajl je obavezan
+        </div>
+      </ng-container>
+    </div>
+  </form>
+  <div class="card-footer card-actions">
+    <button
+      type="button"
+      (click)="ponisti()"
+      class="btn btn-secondary mt-2"
+      [disabled]="loading"
+    >
+      Ponisti
+    </button>
+
+    <button
+      type="submit"
+      class="btn btn-primary mt-2"
+      [disabled]="loading"
+      (click)="onSubmit()"
+    >
+      Izmeni
+    </button>
+    <button
+      type="button"
+      (click)="izbrisiMaterijal()"
+      class="btn btn-danger mt-2"
+      [disabled]="loading"
+    >
+      Izbrisi
+    </button>
+  </div>
+</div>

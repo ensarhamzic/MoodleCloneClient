@@ -17,17 +17,33 @@
         <div class="p-2">
           <div>
             <h5>Predavanja</h5>
-            <ul>
-              <li *ngFor="let pred of predavanja">{{ pred.naziv }}</li>
-            </ul>
-            <p *ngIf="predavanja.length === 0" class="text-muted">Nema predavanja</p>
+            <p *ngFor="let pred of predavanja">
+              {{ pred.naziv }}
+              <span *ngIf="canManage && (role$ | async) === 'Profesor'">
+                <a
+                  [routerLink]="['materijali', pred.id, 'edit']"
+                  class="btn btn-link"
+                  >Izmeni</a
+                >
+              </span>
+            </p>
+            <p *ngIf="predavanja.length === 0" class="text-muted">
+              Nema predavanja
+            </p>
           </div>
 
           <div>
             <h5>Vezbe</h5>
-            <ul>
-              <li *ngFor="let v of vezbe">{{ v.naziv }}</li>
-            </ul>
+            <p *ngFor="let v of vezbe">
+              {{ v.naziv }}
+              <span *ngIf="canManage && (role$ | async) === 'Asistent'">
+                <a
+                  [routerLink]="['materijali', v.id, 'edit']"
+                  class="btn btn-link"
+                  >Izmeni</a
+                >
+              </span>
+            </p>
             <p *ngIf="vezbe.length === 0" class="text-muted">Nema vezbi</p>
           </div>
         </div>

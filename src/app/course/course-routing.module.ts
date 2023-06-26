@@ -8,6 +8,7 @@ import { NewsComponent } from './news/news.component';
 import { canManage } from './course.guard';
 import { PrijaveComponent } from './prijave/prijave.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
+import { EditMaterialComponent } from './edit-material/edit-material.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'courses/:id',
     component: CourseComponent,
+  },
+  {
+    path: 'courses/:id/materijali/:materijalId/edit',
+    component: EditMaterialComponent,
+    canActivate: [canManage],
   },
   {
     path: 'courses/:id/add-material',
