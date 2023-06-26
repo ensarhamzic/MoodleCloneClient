@@ -6,6 +6,8 @@ import { NewObavestenjeComponent } from './new-obavestenje/new-obavestenje.compo
 import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
 import { NewsComponent } from './news/news.component';
 import { canManage } from './course.guard';
+import { PrijaveComponent } from './prijave/prijave.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,16 @@ const routes: Routes = [
   {
     path: 'courses/:id',
     component: CourseComponent,
+  },
+  {
+    path: 'courses/:id/add-material',
+    component: AddMaterialComponent,
+    canActivate: [canManage],
+  },
+  {
+    path: 'courses/:id/prijave',
+    component: PrijaveComponent,
+    canActivate: [canManage],
   },
   {
     path: 'courses/:id/news/add',

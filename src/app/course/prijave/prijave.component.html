@@ -1,0 +1,38 @@
+<h1 class="text-center">Prijave na kurs</h1>
+<div class="cards">
+  <ng-container *ngIf="studenti.length > 0">
+    <div class="card" *ngFor="let student of studenti">
+      <div class="card-header">
+        {{ student.osoba.ime }} {{ student.osoba.prezime }}
+      </div>
+      <div class="card-body">
+        <p class="card-text">JMBG: {{ student.osoba.jmbg }}</p>
+        <p class="card-text">Email: {{ student.osoba.email }}</p>
+        <p class="card-text">Username: {{ student.osoba.username }}</p>
+        <p class="card-text">Pol: {{ student.osoba.pol }}</p>
+        <p class="card-text">Adresa: {{ student.adresa }}</p>
+      </div>
+      <div class="card-footer">
+        <button
+          class="btn btn-danger"
+          (click)="odbijPrijavu(student.osoba.jmbg)"
+          [disabled]="loading"
+        >
+          Obrisi
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="prihvatiPrijavu(student.osoba.jmbg)"
+          [disabled]="loading"
+        >
+          Potvrdi
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="studenti.length === 0">
+    <div class="card">
+      <div class="card-header">Nema studenata za potvrdu</div>
+    </div>
+  </ng-container>
+</div>

@@ -4,11 +4,33 @@
 
 <ng-container *ngIf="course">
   <h1>{{ course.naziv }}</h1>
+  <div *ngIf="brojPrijava">
+    <a routerLink="prijave">Nove prijave: {{ brojPrijava }}</a>
+  </div>
   <div class="row">
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">Materijali</div>
-        <!-- Materials here -->
+        <a routerLink="add-material" class="btn btn-link" *ngIf="canManage"
+          >Dodaj materijal</a
+        >
+        <div class="p-2">
+          <div>
+            <h5>Predavanja</h5>
+            <ul>
+              <li *ngFor="let pred of predavanja">{{ pred.naziv }}</li>
+            </ul>
+            <p *ngIf="predavanja.length === 0" class="text-muted">Nema predavanja</p>
+          </div>
+
+          <div>
+            <h5>Vezbe</h5>
+            <ul>
+              <li *ngFor="let v of vezbe">{{ v.naziv }}</li>
+            </ul>
+            <p *ngIf="vezbe.length === 0" class="text-muted">Nema vezbi</p>
+          </div>
+        </div>
       </div>
       <div *ngIf="!course.materijali && !pending">
         <div class="alert alert-danger">

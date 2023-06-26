@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ICourse } from '../models/course.model';
 import { IObavestenje } from '../models/obavestenje.model';
+import { IStudent } from '../models/student.model';
+import { IMaterijal } from '../models/materijal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -62,6 +64,51 @@ export class CourseService {
     return this.http.post<any>(
       `${environment.api_url}/kursevi/${kursId}/prijava`,
       {},
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  getPrijaveNaKurs(kursId: number): Observable<IStudent[]> {
+    return this.http.get<IStudent[]>(
+      `${environment.api_url}/kursevi/${kursId}/prijave`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  odgovoriNaPrijavu(
+    kursId: number,
+    studentJMBG: string,
+    prihvacena: boolean
+  ): Observable<any> {
+    return this.http.post<any>(
+      `${environment.api_url}/kursevi/${kursId}/prijave`,
+      {
+        studentJMBG,
+        prihvacena,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  dodajMaterijal(kursId: number, materijal: any): Observable<IMaterijal> {
+    const data = new FormData();
+    data.append('naziv', materijal.naziv);
+    data.append('file', materijal.file);
+    return this.http.post<IMaterijal>(
+      `${environment.api_url}/kursevi/${kursId}/materijali`,
+      data,
       {
         headers: {
           Authorization: `Bearer ${this.token}`,

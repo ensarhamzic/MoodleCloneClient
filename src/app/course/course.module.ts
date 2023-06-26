@@ -10,6 +10,8 @@ import { NewsBoardComponent } from './news-board/news-board.component';
 import { NewObavestenjeComponent } from './new-obavestenje/new-obavestenje.component';
 import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
 import { NewsComponent } from './news/news.component';
+import { PrijaveComponent } from './prijave/prijave.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { NewsComponent } from './news/news.component';
     NewObavestenjeComponent,
     ObavestenjeComponent,
     NewsComponent,
+    PrijaveComponent,
+    AddMaterialComponent,
   ],
   imports: [
     CommonModule,
