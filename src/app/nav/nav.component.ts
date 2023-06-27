@@ -13,6 +13,8 @@ export class NavComponent {
   loggedIn$ = this.store.select((state) => state.auth.loggedIn);
   role$ = this.store.select((state) => state.auth.role);
 
+  isCollapsed = true;
+
   constructor(private store: Store<AppState>, private router: Router) {}
 
   logout() {

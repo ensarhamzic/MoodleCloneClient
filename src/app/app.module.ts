@@ -17,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
 import { ToastrModule } from 'ngx-toastr';
 import { TeacherModule } from './teacher/teacher.module';
 import { CourseModule } from './course/course.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -34,6 +35,7 @@ import { CourseModule } from './course/course.module';
     TeacherModule,
     CourseModule,
     ToastrModule.forRoot(),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

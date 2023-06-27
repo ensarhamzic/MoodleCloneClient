@@ -5,7 +5,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { NewObavestenjeComponent } from './new-obavestenje/new-obavestenje.component';
 import { ObavestenjeComponent } from './obavestenje/obavestenje.component';
 import { NewsComponent } from './news/news.component';
-import { canManage } from './course.guard';
+import { canManage, isStudent } from './course.guard';
 import { PrijaveComponent } from './prijave/prijave.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
 import { EditMaterialComponent } from './edit-material/edit-material.component';
@@ -19,6 +19,7 @@ const routes: Routes = [
   {
     path: 'my-courses',
     component: MojiKurseviComponent,
+    canActivate: [isStudent],
   },
   {
     path: 'courses/:id',
