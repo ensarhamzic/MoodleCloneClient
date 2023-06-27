@@ -77,4 +77,15 @@ export class CourseComponent {
       this.router.navigate(['/login']);
     }
   };
+
+  otvoriMaterijal = (materijalId: number) => {
+    this.courseService.getMaterijalUrl(materijalId).subscribe({
+      next: ({ url }) => {
+        window.open(url, '_blank');
+      },
+      error: () => {
+        this.toastr.error('Morate pregledati materijale redom.');
+      },
+    });
+  };
 }

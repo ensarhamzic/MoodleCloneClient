@@ -1,4 +1,19 @@
-<div class="card obavestenje-card" *ngFor="let ob of obavestenja">
-  <div class="card-header">{{ ob.naslov }}</div>
-  <div class="p-2">{{ ob.sadrzaj }}</div>
+<div class="cards">
+  <ng-container *ngIf="obavestenja.length > 0">
+    <div class="card" *ngFor="let ob of obavestenja">
+      <div class="card-header">
+        {{ ob.naslov }}
+      </div>
+      <div class="card-body">
+        {{ ob.sadrzaj | slice : 0 : 20 }}
+        {{ ob.sadrzaj.length > 20 ? "..." : "" }}
+        <a [routerLink]="[ob.id]">Procitaj vise</a>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="obavestenja.length === 0">
+    <div class="card">
+      <div class="card-header">Nema obavestenja</div>
+    </div>
+  </ng-container>
 </div>

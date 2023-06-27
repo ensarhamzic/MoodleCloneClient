@@ -4,6 +4,14 @@
 
 <ng-container *ngIf="course">
   <h1>{{ course.naziv }}</h1>
+  <h3 class="text-muted">
+    Profesor: {{ course.profesor.osoba.ime }}
+    {{ course.profesor.osoba.prezime }}
+  </h3>
+  <h4 class="text-muted">
+    Asistent: {{ course.asistent.osoba.ime }}
+    {{ course.asistent.osoba.prezime }}
+  </h4>
   <div *ngIf="brojPrijava">
     <a routerLink="prijave">Nove prijave: {{ brojPrijava }}</a>
   </div>
@@ -17,7 +25,11 @@
         <div class="p-2" *ngIf="course.materijali">
           <div>
             <h5>Predavanja</h5>
-            <p *ngFor="let pred of predavanja">
+            <p
+              class="m-0 p-0"
+              *ngFor="let pred of predavanja"
+              (click)="otvoriMaterijal(pred.id)"
+            >
               {{ pred.naziv }}
               <span *ngIf="canManage && (role$ | async) === 'Profesor'">
                 <a
@@ -34,7 +46,11 @@
 
           <div>
             <h5>Vezbe</h5>
-            <p *ngFor="let v of vezbe">
+            <p
+              *ngFor="let v of vezbe"
+              class="m-0 p-0"
+              (click)="otvoriMaterijal(v.id)"
+            >
               {{ v.naziv }}
               <span *ngIf="canManage && (role$ | async) === 'Asistent'">
                 <a

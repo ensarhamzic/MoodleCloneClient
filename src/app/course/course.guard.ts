@@ -6,6 +6,8 @@ import {
   Router,
 } from '@angular/router';
 import { CourseService } from '../services/course.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../state/app.state';
 
 export const canManage: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const router = inject(Router);
@@ -17,5 +19,18 @@ export const canManage: CanActivateFn = (route: ActivatedRouteSnapshot) => {
       router.navigate(['/']);
     }
   });
+  return true;
+};
+
+export const isStudent: CanActivateFn = () => {
+  const router = inject(Router);
+  const store = inject(Store<AppState>);
+  store
+    .select((state) => state.auth.role)
+    .subscribe((role) => {
+      if (role !== 'Student') {
+        router.navigate(['/']);
+      }
+    });
   return true;
 };

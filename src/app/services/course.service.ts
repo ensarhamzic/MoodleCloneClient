@@ -181,4 +181,23 @@ export class CourseService {
       }
     );
   }
+
+  getMaterijalUrl(materijalId: number): Observable<{ url: string }> {
+    return this.http.get<{ url: string }>(
+      `${environment.api_url}/kursevi/materijali/${materijalId}/pregled`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
+
+  getMojiKursevi(): Observable<ICourse[]> {
+    return this.http.get<ICourse[]>(`${environment.api_url}/kursevi/moji`, {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    });
+  }
 }

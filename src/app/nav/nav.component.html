@@ -64,6 +64,14 @@
         >Novi Kurs</a
       >
 
+      <a
+        *ngIf="(role$ | async) === 'Student'"
+        class="nav-item nav-link"
+        routerLink="my-courses"
+        routerLinkActive="active"
+        >Moji kursevi</a
+      >
+
       <button
         class="nav-item nav-link"
         *ngIf="loggedIn$ | async"

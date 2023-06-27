@@ -13,6 +13,7 @@ import { NewsComponent } from './news/news.component';
 import { PrijaveComponent } from './prijave/prijave.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
 import { EditMaterialComponent } from './edit-material/edit-material.component';
+import { MojiKurseviComponent } from './moji-kursevi/moji-kursevi.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditMaterialComponent } from './edit-material/edit-material.component';
     PrijaveComponent,
     AddMaterialComponent,
     EditMaterialComponent,
+    MojiKurseviComponent,
   ],
   imports: [
     CommonModule,
