@@ -5,4 +5,5 @@ export interface IMaterijal {
   tip: string;
   datum: Date;
   kursId: number;
+  pregledan: boolean;
 }

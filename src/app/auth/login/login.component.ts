@@ -14,6 +14,7 @@ export class LoginComponent {
   loginForm: FormGroup = new FormGroup({});
   loginError$ = this.store.select((state) => state.auth.error);
   loggedIn$ = this.store.select((state) => state.auth.loggedIn);
+  loading$ = this.store.select((state) => state.auth.loading);
   username = new FormControl('', [
     Validators.required,
     Validators.minLength(2),

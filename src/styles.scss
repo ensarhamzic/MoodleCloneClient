@@ -1,4 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/scss/bootstrap';
+
+body {
+  background-color: #8a8a8a !important;
+}
+
 
 @media screen and (max-width: 850px) {
   .card {
@@ -6,6 +11,21 @@
   }
 }
 
-/* */
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+a {
+  color: black !important;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.btn-primary {
+  background-color: #fad46c !important;
+  border: none !important;
+  border-radius: 5px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.btn-primary:hover {
+  background-color: #eec554 !important;
+}

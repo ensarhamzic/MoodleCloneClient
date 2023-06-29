@@ -67,6 +67,7 @@ export class RegisterComponent {
   teacherForm: FormGroup = new FormGroup({});
 
   loggedIn$ = this.store.select((state) => state.auth.loggedIn);
+  loading$ = this.store.select((state) => state.auth.loading);
 
   constructor(
     private zvanjeService: ZvanjeService,

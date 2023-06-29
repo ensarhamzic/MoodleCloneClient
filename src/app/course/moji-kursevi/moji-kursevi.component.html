@@ -1,4 +1,8 @@
-<div class="cards">
+<ng-container *ngIf="loading">
+  <div class="alert alert-info">Ucitavanje...</div>
+</ng-container>
+
+<div class="cards" *ngIf="!loading">
   <ng-container *ngIf="kursevi.length > 0">
     <div class="card" *ngFor="let course of kursevi">
       <div class="card-header">

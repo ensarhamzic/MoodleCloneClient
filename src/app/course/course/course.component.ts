@@ -55,6 +55,22 @@ export class CourseComponent {
             .filter((m: IMaterijal) => m.tip == 'Vezbe')
             .sort((a: any, b: any) => a.datum - b.datum);
         }
+
+        this.role$.subscribe((role) => {
+          if (role === 'Student') {
+            console.log('ensar');
+            this.predavanja.map((m) => {
+              data.pregledaniMaterijaliIds.some((id: number) => id == m.id)
+                ? (m.pregledan = true)
+                : (m.pregledan = false);
+            });
+            this.vezbe.map((m) => {
+              data.pregledaniMaterijaliIds.some((id: number) => id == m.id)
+                ? (m.pregledan = true)
+                : (m.pregledan = false);
+            });
+          }
+        });
       },
       error: () => {
         this.loading = false;
@@ -81,6 +97,16 @@ export class CourseComponent {
   otvoriMaterijal = (materijalId: number) => {
     this.courseService.getMaterijalUrl(materijalId).subscribe({
       next: ({ url }) => {
+        this.predavanja.map((m) => {
+          if (m.id == materijalId) {
+            m.pregledan = true;
+          }
+        });
+        this.vezbe.map((m) => {
+          if (m.id == materijalId) {
+            m.pregledan = true;
+          }
+        });
         window.open(url, '_blank');
       },
       error: () => {

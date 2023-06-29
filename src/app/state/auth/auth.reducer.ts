@@ -3,6 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   checkToken,
   checkTokenSuccess,
+  login,
   loginFailure,
   loginSuccess,
   logout,
@@ -42,6 +43,12 @@ export const initialState: AuthState = {
 export const authReducer = createReducer(
   initialState,
   on(register, (state, action) => {
+    return {
+      ...state,
+      loading: true,
+    };
+  }),
+  on(login, (state, action) => {
     return {
       ...state,
       loading: true,

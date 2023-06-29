@@ -9,10 +9,12 @@ import { CourseService } from 'src/app/services/course.service';
 })
 export class CourseListComponent {
   smerovi: ISmer[] = [];
+  loading: boolean = true;
 
   constructor(private courseService: CourseService) {
     this.courseService.getSmeroviSaKursevima().subscribe((smerovi) => {
       this.smerovi = smerovi;
+      this.loading = false;
     });
   }
 }

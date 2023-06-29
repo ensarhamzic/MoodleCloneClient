@@ -1,6 +1,11 @@
 <div class="card obavestenje-card" *ngIf="obavestenje">
   <div class="card-header">{{ obavestenje.naslov }}</div>
   <div class="p-2">{{ obavestenje.sadrzaj }}</div>
+  <div class="card-footer">
+    {{ obavestenje.nastavnik.osoba.ime }}
+    {{ obavestenje.nastavnik.osoba.prezime }} |
+    {{ obavestenje.datum | date : "dd.MM.yyyy hh:mm:ss" }}
+  </div>
 </div>
 
 <div class="card obavestenje-card mt-2" *ngIf="obavestenje?.studenti">

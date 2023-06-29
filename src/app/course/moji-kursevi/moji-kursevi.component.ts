@@ -9,10 +9,12 @@ import { CourseService } from 'src/app/services/course.service';
 })
 export class MojiKurseviComponent {
   kursevi: ICourse[] = [];
+  loading: boolean = true;
 
   constructor(private courseService: CourseService) {
     this.courseService.getMojiKursevi().subscribe((data) => {
       this.kursevi = data;
+      this.loading = false;
     });
   }
 }

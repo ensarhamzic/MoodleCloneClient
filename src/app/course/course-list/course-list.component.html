@@ -1,4 +1,8 @@
-<div class="card container-card">
+<ng-container *ngIf="loading">
+  <div class="alert alert-info">Ucitavanje...</div>
+</ng-container>
+
+<div class="card container-card" *ngIf="smerovi.length > 0">
   <div class="card-header">Kursevi</div>
   <div class="card card-item" *ngFor="let smer of smerovi">
     <div>{{ smer.naziv }}</div>

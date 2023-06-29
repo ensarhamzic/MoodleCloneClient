@@ -9,6 +9,11 @@
         {{ ob.sadrzaj.length > 20 ? "..." : "" }}
         <a [routerLink]="[ob.id]">Procitaj vise</a>
       </div>
+      <div class="card-footer">
+        {{ ob.nastavnik.osoba.ime }}
+        {{ ob.nastavnik.osoba.prezime }} |
+        {{ ob.datum | date : "dd.MM.yyyy hh:mm:ss" }}
+      </div>
     </div>
   </ng-container>
   <ng-container *ngIf="obavestenja.length === 0">
