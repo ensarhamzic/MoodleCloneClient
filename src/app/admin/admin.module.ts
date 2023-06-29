@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentComponent } from './student/student.component';
 import { RouterModule } from '@angular/router';
+import { DodajSmerComponent } from './dodaj-smer/dodaj-smer.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
     StudentiComponent,
     NoviAdminComponent,
     StudentComponent,
+    DodajSmerComponent,
   ],
   imports: [CommonModule, SharedModule, ReactiveFormsModule, RouterModule],
 })

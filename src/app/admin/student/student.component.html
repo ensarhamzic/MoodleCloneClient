@@ -24,7 +24,7 @@
       <form [formGroup]="form" (ngSubmit)="upisi()">
         <div>
           <label>Smer</label> <br />
-          <select formControlName="smerId">
+          <select formControlName="smerId" class="form-control">
             <option *ngFor="let smer of smerovi" [value]="smer.id">
               {{ smer.naziv }}
             </option>

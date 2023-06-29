@@ -82,12 +82,18 @@ export class CourseComponent {
   prijaviSeNaKurs = () => {
     if (this.loggedIn) {
       this.prijavljivanje = true;
-      this.courseService.prijaviSeNaKurs(this.course.id).subscribe(() => {
-        this.pending = !this.pending;
-        if (this.pending)
-          this.toastr.success('Uspešno ste se prijavili na kurs.');
-        else this.toastr.success('Uspešno ste odjavili kurs.');
-        this.prijavljivanje = false;
+      this.courseService.prijaviSeNaKurs(this.course.id).subscribe({
+        next: () => {
+          this.pending = !this.pending;
+          if (this.pending)
+            this.toastr.success('Uspešno ste se prijavili na kurs.');
+          else this.toastr.success('Uspešno ste odjavili kurs.');
+          this.prijavljivanje = false;
+        },
+        error: (err) => {
+          this.toastr.error(err.error.message);
+          this.prijavljivanje = false;
+        },
       });
     } else {
       this.router.navigate(['/login']);

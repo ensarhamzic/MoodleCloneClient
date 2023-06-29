@@ -96,4 +96,16 @@ export class AdminService {
       admin
     );
   }
+
+  addSmer(naziv: string): Observable<ISmer> {
+    return this.http.post<ISmer>(
+      `${environment.api_url}/smerovi/novi`,
+      { naziv },
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      }
+    );
+  }
 }

@@ -5,6 +5,7 @@ import { isAdmin } from './admin.guard';
 import { StudentiComponent } from './studenti/studenti.component';
 import { NoviAdminComponent } from './novi-admin/novi-admin.component';
 import { StudentComponent } from './student/student.component';
+import { DodajSmerComponent } from './dodaj-smer/dodaj-smer.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'novi-admin',
         component: NoviAdminComponent,
+      },
+      {
+        path: 'dodaj-smer',
+        component: DodajSmerComponent,
       },
     ],
   },
