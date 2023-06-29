@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "infsistemi": {
+      "hosting": {
+        "MoodleClone": [
+          "infsistemi"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "infsistemi"
+  }
+}

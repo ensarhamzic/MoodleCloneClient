@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "MoodleClone",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
