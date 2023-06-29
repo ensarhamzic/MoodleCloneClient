@@ -34,9 +34,9 @@ export const initialState: AuthState = {
     email: '',
   },
   token: '',
-  role: '',
+  role: localStorage.getItem('role') || '',
   verified: false,
-  loggedIn: false,
+  loggedIn: !!localStorage.getItem('token'),
 };
 
 export const authReducer = createReducer(
@@ -49,6 +49,7 @@ export const authReducer = createReducer(
   }),
   on(registerSuccess, (state, { data }) => {
     localStorage.setItem('token', data.token);
+    localStorage.setItem('role', data.role);
     return {
       ...state,
       loading: false,
@@ -62,6 +63,7 @@ export const authReducer = createReducer(
   }),
   on(teacherRegisterSuccess, (state, { data }) => {
     localStorage.setItem('token', data.token);
+    localStorage.setItem('role', data.role);
     return {
       ...state,
       loading: false,
@@ -82,6 +84,7 @@ export const authReducer = createReducer(
   }),
   on(loginSuccess, (state, { data }) => {
     localStorage.setItem('token', data.token);
+    localStorage.setItem('role', data.role);
     return {
       ...state,
       loading: false,
@@ -121,6 +124,7 @@ export const authReducer = createReducer(
   }),
   on(logout, (state) => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     return {
       ...state,
       loading: false,
