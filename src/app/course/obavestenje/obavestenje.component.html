@@ -1,3 +1,7 @@
+<ng-container *ngIf="loading">
+  <div class="alert alert-info">Ucitavanje...</div>
+</ng-container>
+
 <div class="card obavestenje-card" *ngIf="obavestenje">
   <div class="card-header">{{ obavestenje.naslov }}</div>
   <div class="p-2">{{ obavestenje.sadrzaj }}</div>
@@ -10,12 +14,19 @@
 
 <div class="card obavestenje-card mt-2" *ngIf="obavestenje?.studenti">
   <div class="card-header">Pregledi</div>
-  <div class="p-2" *ngFor="let student of obavestenje.studenti">
-    {{ student.email }} {{ student.ime }} {{ student.ime }} |
-    {{ student.datum | date : "dd.MM.yyyy hh:mm:ss" }}
-  </div>
+  <ng-container *ngIf="obavestenje.studenti.length > 0; else noPregledi">
+    <div class="p-2" *ngFor="let student of obavestenje.studenti">
+      {{ student.email }} {{ student.ime }} {{ student.ime }} |
+      {{ student.datum | date : "dd.MM.yyyy hh:mm:ss" }}
+    </div>
+  </ng-container>
+  <ng-template #noPregledi>
+    <div class="p-3">
+      <p class="noPreglediText">Nema pregleda</p>
+    </div>
+  </ng-template>
 </div>
 
-<div *ngIf="!obavestenje" class="card">
+<div *ngIf="!obavestenje && !loading" class="card">
   <div class="card-header">Obavestenje ne postoji</div>
 </div>
