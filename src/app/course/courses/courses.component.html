@@ -1,0 +1,6 @@
+<app-search
+  (search)="searchHandler($event)"
+  placeholder="Minimum 3 slova"
+  title="Pretrazi kurseve"
+></app-search>
+<app-course-list [smerovi]="smerovi" [loading]="loading"></app-course-list>

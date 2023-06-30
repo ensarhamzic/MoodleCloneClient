@@ -1,0 +1,9 @@
+<div class="card search-card mb-3">
+  <div class="card-header">{{ title }}</div>
+  <input
+    type="text"
+    class="form-control"
+    [placeholder]="placeholder"
+    (keyup)="onInputChanged($event)"
+  />
+</div>

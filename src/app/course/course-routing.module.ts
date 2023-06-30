@@ -10,11 +10,12 @@ import { PrijaveComponent } from './prijave/prijave.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
 import { EditMaterialComponent } from './edit-material/edit-material.component';
 import { MojiKurseviComponent } from './moji-kursevi/moji-kursevi.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [
   {
     path: 'courses',
-    component: CourseListComponent,
+    component: CoursesComponent,
   },
   {
     path: 'my-courses',

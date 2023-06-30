@@ -27,8 +27,10 @@ export class AdminService {
     );
   }
 
-  getStudents(): Observable<IStudent[]> {
-    return this.http.get<IStudent[]>(`${environment.api_url}/users/students`);
+  getStudents(query: string = ''): Observable<IStudent[]> {
+    return this.http.get<IStudent[]>(
+      `${environment.api_url}/users/students?query=${query}`
+    );
   }
 
   getStudent(jmbg: string): Observable<IStudent> {

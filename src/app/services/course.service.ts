@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
 import { ISmer } from '../models/smer.module';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ICourse } from '../models/course.model';
@@ -22,8 +22,10 @@ export class CourseService {
     this.token$.subscribe((token) => (this.token = token));
   }
 
-  getSmeroviSaKursevima(): Observable<ISmer[]> {
-    return this.http.get<ISmer[]>(`${environment.api_url}/smerovi`);
+  getSmeroviSaKursevima(query: string = ''): Observable<ISmer[]> {
+    return this.http.get<ISmer[]>(
+      `${environment.api_url}/smerovi?query=${query}`
+    );
   }
 
   getCourseById(id: number): Observable<any> {

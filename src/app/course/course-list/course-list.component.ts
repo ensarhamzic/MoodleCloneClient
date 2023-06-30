@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ISmer } from 'src/app/models/smer.module';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -8,13 +8,8 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./course-list.component.scss'],
 })
 export class CourseListComponent {
-  smerovi: ISmer[] = [];
-  loading: boolean = true;
+  @Input() smerovi: ISmer[] = [];
+  @Input() loading: boolean = true;
 
-  constructor(private courseService: CourseService) {
-    this.courseService.getSmeroviSaKursevima().subscribe((smerovi) => {
-      this.smerovi = smerovi;
-      this.loading = false;
-    });
-  }
+  constructor(private courseService: CourseService) {}
 }

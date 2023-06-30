@@ -1,28 +1,29 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { IStudent } from 'src/app/models/student.model';
-import { AdminService } from 'src/app/services/admin.service';
+import { ISmer } from 'src/app/models/smer.module';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
-  selector: 'app-studenti',
-  templateUrl: './studenti.component.html',
-  styleUrls: ['./studenti.component.scss'],
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss'],
 })
-export class StudentiComponent {
-  studenti: IStudent[] = [];
+export class CoursesComponent {
+  smerovi: ISmer[] = [];
   loading: boolean = true;
+
   query$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private adminService: AdminService) {
+  constructor(private courseService: CourseService) {
     this.query$
       .pipe(
         switchMap((query) => {
-          return this.adminService.getStudents(query);
+          return this.courseService.getSmeroviSaKursevima(query);
         })
       )
       .subscribe((smerovi) => {
-        this.studenti = smerovi;
+        this.smerovi = smerovi;
         this.loading = false;
       });
   }
